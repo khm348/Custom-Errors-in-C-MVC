@@ -1,0 +1,68 @@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SessionExpired</title>
+    <link href="~/lib/css/test.css" rel="stylesheet">
+    <link href="~/lib/css/main.css" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="ping-container">
+        <!--
+        if there is a logo present in the 'company-logo' container,
+        then 'has-logo' class should be added to 'ping-header' container.
+        -->
+       
+        
+
+
+        <div class="ping-header has-logo">
+            <div class="">
+                <div style="font-size:30px;">
+                   
+                   <img src="~/images/test.jpg" style="height:100px; margin-left:60px;"/>
+                   
+                    <img id="company-logo" src="~/images/test_logo.png" alt="test" style="width:50px; float:right;" />
+                    
+                </div>
+            </div>
+        <div style="display:none;">@TempData["ValidationMessage"] </div>
+            <div style="width:100%;"> Internal Server Issue</div>
+        </div><!-- .ping-header -->
+     
+
+        <div class="ping-body-container">
+           
+            <div class="ping-messages">
+                <div style="text-align: center;">
+                    @{ var Url = string.Empty; var text = string.Empty;}
+                    Some thing went wrong!!.
+                       @if (Session["UserId"] != null)
+                       {
+                           Url = ((Request.Url.ToString().Contains("localhost") || Request.Url.ToString().Contains("test.test.com")) ? string.Empty : System.Configuration.ConfigurationManager.AppSettings["GMCUrl"].ToString()) + "/admin/index";
+                           text = "to login again";
+                       }
+                       else
+                       {
+                           Url = ((Request.Url.ToString().Contains("localhost") || Request.Url.ToString().Contains("test.test.com")) ? string.Empty : System.Configuration.ConfigurationManager.AppSettings["GMCUrl"].ToString()) + "/home/homepage";
+                           text= "to go to homepage";
+                       }
+                       Click <a href="@Url">here</a> @text.
+                     
+                </div>
+
+            </div>
+        </div><!-- .ping-body-container -->
+
+
+
+    </div>
+</body>
+</html>
